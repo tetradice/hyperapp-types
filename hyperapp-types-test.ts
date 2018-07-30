@@ -6,14 +6,14 @@ import { app, h } from "hyperapp";
 
 interface MyState {
   count: number;
-  tags: {
+  tag: {
       label: string;
   };
 }
 
 const state: MyState = {
   count: 0,
-  tags: {
+  tag: {
       label: '&'
   }
 };
@@ -25,7 +25,11 @@ const state: MyState = {
     act2: (value: number) => ({ count: value }),
     act3: ()              => (state: MyState, actions: MyActions) => ({ count: state.count - 1 }),
     act4: (value: number) => (state: MyState, actions: MyActions) => ({ count: state.count - value }),
-    getState: ()          => (state: MyState) => (state)
+    getState: ()          => (state: MyState) => (state),
+    tag: {
+      setLabel: (value: string) => ({ label: value }),
+      get: () => (state: MyState['tag']) => (state),
+    }
   };
   type MyActions = WiredActions<MyState, (typeof actions)>;
   const testView = (st: MyState, acts: MyActions) => (h('div'));
@@ -37,6 +41,8 @@ const state: MyState = {
     const t3: Partial<MyState> = actions.act3();
     const t4: Partial<MyState> = actions.act4(1);
     const st: MyState = actions.getState();
+    const t5: Partial<MyState['tag']> = actions.tag.setLabel('abc');
+    const st2: MyState['tag'] = actions.tag.get();
 
     actions.act2();   // $ExpectError
     actions.act4();   // $ExpectError
