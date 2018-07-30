@@ -1,0 +1,12 @@
+{
+    "extends": "dtslint/dtslint.json",
+    "rules": {
+        "eofline": false,
+        "file-name-casing": null,
+        "prefer-const": false,
+        "semicolon": [true, "always", "ignore-interfaces"],
+        "comment-format": false,
+        "strict-export-declare-modifiers": false,
+        "no-consecutive-blank-lines": false
+    }
+}
