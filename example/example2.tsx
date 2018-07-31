@@ -1,4 +1,4 @@
-import { ParamType, WiredActions } from "@hyperapp/types";
+import { ParamType, WiredActions } from "hyperapp-types";
 
 interface MyState {
   count: number;

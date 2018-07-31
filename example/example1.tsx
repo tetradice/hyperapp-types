@@ -1,4 +1,4 @@
-import { WiredActions } from "@hyperapp/types";
+import { WiredActions } from "hyperapp-types";
 
 interface MyState {
   count: number;
@@ -16,7 +16,7 @@ const actionImplements = {
 };
 
 //------------------------
-// without @hyperapp/types
+// without hyperapp-types
 //------------------------
 const view1 = (state: MyState, actions: (typeof actionImplements)) => {
     actions.down(5); // OK
@@ -32,7 +32,7 @@ const view1 = (state: MyState, actions: (typeof actionImplements)) => {
 };
 
 //------------------------
-// with @hyperapp/types
+// with hyperapp-types
 //------------------------
 type MyActions = WiredActions<MyState, (typeof actionImplements)>; // generate type of wired actions from `actionImplements`
 

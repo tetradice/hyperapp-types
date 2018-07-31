@@ -154,7 +154,7 @@ const view1 = (state: MyState, actions: MyActions) => {
 
 License
 --------
-Unlicensed.
+Unlicensed
 
 Contact
 --------

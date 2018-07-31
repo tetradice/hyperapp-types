@@ -1,7 +1,7 @@
 // test code for dtslint
 // https://github.com/Microsoft/dtslint
 
-import { WiredActions, ParamType } from "@hyperapp/types";
+import { WiredActions, ParamType } from "hyperapp-types";
 import { app, h } from "hyperapp";
 
 interface MyState {

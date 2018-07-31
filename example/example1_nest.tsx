@@ -1,4 +1,4 @@
-import { WiredActions } from "@hyperapp/types";
+import { WiredActions } from "hyperapp-types";
 
 interface MyState {
   label: {

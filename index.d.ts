@@ -1,3 +1,5 @@
+// hyperapp-types
+
 // TypeScript Version: 2.8
 // Extra type definitions for hyperapp V1
 
