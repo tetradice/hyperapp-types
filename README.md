@@ -32,7 +32,7 @@ Usage
 
 ### 1. WiredActions
 
-Pass the state type and the actions type to `WiredAction`. WiredActions will generate correctly typed actions types based on them.
+Pass the state type and the actions type to `WiredActions`. WiredActions will generate correctly typed actions types based on them.
 
 ```ts
 import { WiredActions } from "hyperapp-types";
@@ -82,7 +82,7 @@ const view2 = (state: MyState, actions: MyActions) => {
 };
 ```
 
-hyperapp-types also supports nested actions.
+hyperapp-types also supports [nested actions][].
 
 ```ts
 import { WiredActions } from "hyperapp-types";
@@ -161,3 +161,4 @@ Contact
 @tetradice ([Twitter](https://twitter.com/tetradice))
 
 [hyperapp]: https://github.com/hyperapp/hyperapp
+[nested actions]: https://github.com/hyperapp/hyperapp#nested-actions
