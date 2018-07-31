@@ -1,4 +1,4 @@
-@hyperapp/types
+hyperapp-types
 ========
 
 Useful and strict type definitions for TypeScript with [hyperapp][].
@@ -13,7 +13,7 @@ hyperapp V1 (1.x.x) and TypeScript 2.8 later
 Features
 --------
 
-@hyperapp/types includes 2 utility types.
+hyperapp-types includes 2 utility types.
 
 1. `WiredActions` - Generate wired actions type from actions. (Also nesting action)
 2. `ParamType` - Extract parameter type from action. It is a little something extra :-)
@@ -24,7 +24,7 @@ Installation
 Install with npm / Yarn.
 
 ```
-npm install @hyperapp/types
+npm install hyperapp-types
 ```
 
 Usage
@@ -35,7 +35,7 @@ Usage
 Pass the state type and the actions type to `WiredAction`. WiredActions will generate correctly typed actions types based on them.
 
 ```ts
-import { WiredActions } from "@hyperapp/types";
+import { WiredActions } from "hyperapp-types";
 
 interface MyState {
   count: number;
@@ -53,7 +53,7 @@ const actionImplements = {
 };
 
 //------------------------
-// without @hyperapp/types
+// without hyperapp-types
 //------------------------
 const view1 = (state: MyState, actions: (typeof actionImplements)) => {
     actions.down(5); // OK
@@ -69,7 +69,7 @@ const view1 = (state: MyState, actions: (typeof actionImplements)) => {
 };
 
 //------------------------
-// with @hyperapp/types
+// with hyperapp-types
 //------------------------
 type MyActions = WiredActions<MyState, (typeof actionImplements)>; // generate type of wired actions from `actionImplements`
 
@@ -82,10 +82,10 @@ const view2 = (state: MyState, actions: MyActions) => {
 };
 ```
 
-@hyperapp/types also supports nested actions.
+hyperapp-types also supports nested actions.
 
 ```ts
-import { WiredActions } from "@hyperapp/types";
+import { WiredActions } from "hyperapp-types";
 
 interface MyState {
   label: {
@@ -122,7 +122,7 @@ const view2 = (state: MyState, actions: MyActions) => {
 ParamType extracts parameter types from function type with zero or one parameter (action function).
 
 ```ts
-import { ParamType, WiredActions } from "@hyperapp/types";
+import { ParamType, WiredActions } from "hyperapp-types";
 
 interface MyState {
   count: number;
