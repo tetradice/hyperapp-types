@@ -1,6 +1,6 @@
 {
   "name": "hyperapp-types",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "useful and strict type definitions for TypeScript with hyperapp",
   "scripts": {
     "test": "dtslint"
@@ -19,10 +19,9 @@
   ],
   "author": "tetradice",
   "license": "UNLICENSED",
-  "dependencies": {
-    "hyperapp": "^1.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "dtslint": "^0.3.0"
+    "dtslint": "^0.3.0",
+    "hyperapp": "^1.0.0"
   }
 }

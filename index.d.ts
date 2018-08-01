@@ -3,8 +3,6 @@
 // TypeScript Version: 2.8
 // Extra type definitions for hyperapp V1
 
-/// <reference types="hyperapp" />
-
 /** Action implements type */
 export type ActionImplements<Self, State> = {[key in keyof Self]: ActionImplementItem<Self, State, key>};
 
@@ -16,8 +14,8 @@ type ActionImplementItem<ActionImpls, State, PropName extends keyof ActionImpls>
     NestedActionImplements<ActionImpls, State, PropName>
 );
 
-type ActionImplementFunctionLazy<State> = (data?: any) => (state: State, actions: object) => hyperapp.ActionResult<State>;
-type ActionImplementFunction<State> = (data?: any) => hyperapp.ActionResult<State>;
+type ActionImplementFunctionLazy<State> = (data?: any) => (state: State, actions: object) => HyperappActionResult<State>;
+type ActionImplementFunction<State> = (data?: any) => HyperappActionResult<State>;
 
 type NestedActionImplements<ActionImpls, State, PropName extends keyof ActionImpls> = (
     PropName extends ((keyof State) & (keyof ActionImpls)) ? ActionImplements<ActionImpls[PropName], State[PropName]> : never
@@ -47,3 +45,10 @@ export type ParamType<A> = (
     A extends ((data: infer P) => any) ? P     :
     never
 );
+
+/**
+ * hyperapp ActionResult
+ *  (copy of hyperapp. If it depends on hyperapp, hyperapp will be installed doubly at npm and an
+ * error will occur with duplication of type definition.)
+ */
+type HyperappActionResult<State> = Partial<State> | Promise<any> | null | void;
