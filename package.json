@@ -1,6 +1,6 @@
 {
   "name": "hyperapp-types",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "useful and strict type definitions for TypeScript with hyperapp",
   "scripts": {
     "test": "dtslint"
@@ -14,7 +14,6 @@
     "package.json",
     "tsconfig.json",
     "tslint.json",
-    "*.ts",
     "*.md"
   ],
   "author": "tetradice",
