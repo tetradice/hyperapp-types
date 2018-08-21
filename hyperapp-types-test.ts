@@ -21,10 +21,12 @@ const state: MyState = {
 // Basic
 {
   const actions = {
-    act1: ()              => ({ count: 1 }),
-    act2: (value: number) => ({ count: value }),
-    act3: ()              => (state: MyState, actions: MyActions) => ({ count: state.count - 1 }),
-    act4: (value: number) => (state: MyState, actions: MyActions) => ({ count: state.count - value }),
+    act1:  ()              => ({ count: 1 }),
+    act2:  (value: number) => ({ count: value }),
+    act2o: (value?: number) => ({ count: value }),
+    act3:  ()              => (state: MyState, actions: MyActions) => ({ count: state.count - 1 }),
+    act4:  (value: number) => (state: MyState, actions: MyActions) => ({ count: state.count - value }),
+    act4o: (value?: number) => (state: MyState, actions: MyActions) => ({ count: state.count - value }),
     getState: ()          => (state: MyState) => (state),
     tag: {
       setLabel: (value: string) => ({ label: value }),
@@ -38,14 +40,13 @@ const state: MyState = {
   const func = (actions: MyActions) => {
     const t1: Partial<MyState> = actions.act1();
     const t2: Partial<MyState> = actions.act2(1);
+    const t2o: Partial<MyState> = actions.act2(1);
     const t3: Partial<MyState> = actions.act3();
     const t4: Partial<MyState> = actions.act4(1);
+    const t4o: Partial<MyState> = actions.act4(1);
     const st: MyState = actions.getState();
     const t5: Partial<MyState['tag']> = actions.tag.setLabel('abc');
     const st2: MyState['tag'] = actions.tag.get();
-
-    actions.act2();   // $ExpectError
-    actions.act4();   // $ExpectError
   };
 }
 
@@ -84,10 +85,10 @@ const state: MyState = {
   };
   type MyActions = WiredActions<MyState, (typeof actions)>;
 
-  type t1 = ParamType<typeof actions.act1>; // $ExpectType never
-  type t1a = ParamType<MyActions['act1']>; // $ExpectType never
+  type t1 = ParamType<typeof actions.act1>; // $ExpectType {}
+  type t1a = ParamType<MyActions['act1']>; // $ExpectType {}
   type t2 = ParamType<typeof actions.act2>; // $ExpectType number
   type t2a = ParamType<MyActions['act2']>; // $ExpectType number
-  type t3 = ParamType<typeof actions.act3>; // $ExpectType never
+  type t3 = ParamType<typeof actions.act3>; // $ExpectType {}
   type t4 = ParamType<typeof actions.act4>; // $ExpectType number
 }

@@ -27,12 +27,8 @@ export type WiredActions<State, ActImpls extends ActionImplements<ActImpls, Stat
 type WiredActionsInner<State, ActImpls> = {[key in keyof ActImpls]: WiredActionItem<State, ActImpls, key>};
 
 type WiredActionItem<State, ActImpls, PropName extends (keyof ActImpls)> = (
-    // without parameter
-    ActImpls[PropName] extends (() => (state: State, actions: infer A2) => (infer R))              ? (() => R)        :
-    ActImpls[PropName] extends (() => (infer R))                                                   ? (() => R)        :
-    // with parameter
-    ActImpls[PropName] extends ((data: infer P) => (state: State, actions: infer A2) => (infer R)) ? ((data: P) => R) :
-    ActImpls[PropName] extends ((data: infer P) => (infer R))                                      ? ((data: P) => R) :
+    ActImpls[PropName] extends ((data?: infer P) => (state: State, actions: infer A2) => (infer R)) ? ((data?: P) => R) :
+    ActImpls[PropName] extends ((data?: infer P) => (infer R))                                      ? ((data?: P) => R) :
     // nested actions
     PropName extends (keyof State) ? WiredActionsInner<State[PropName], ActImpls[PropName]> :
     // invalid
@@ -41,7 +37,6 @@ type WiredActionItem<State, ActImpls, PropName extends (keyof ActImpls)> = (
 
 /** extract parameter type from action */
 export type ParamType<A> = (
-    A extends (() => any)              ? never :
     A extends ((data: infer P) => any) ? P     :
     never
 );
